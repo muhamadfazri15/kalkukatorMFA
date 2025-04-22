@@ -1,0 +1,123 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ececec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #f4f3f3;
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 800px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #909090;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align-last: center;
+    max-width: 300px;
+    background-color: #ecf0f1;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button[name="reset"] {
+    background-color: #e74c3c;
+    margin-left: 10px;
+}
+
+button[name="reset"]:hover {
+    background-color: #c0392b;
+}
+
+button:hover {
+    background-color: #16a085;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.notif-sukses {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.history {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.history ul {
+    list-style: decimal;
+    padding-left: 20px;
+    color: #2c3e50;
+}
+
+.btn-clear-history {
+    margin-top: 10px;
+    background-color: #f39c12;
+    padding: 8px 20px;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-clear-history:hover {
+    background-color: #e67e22;
+}
+
+.history {
+    margin-top: 25px;
+    text-align: left;
+    max-height: 200px; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+    padding-left: 10px;
+}

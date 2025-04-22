@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJtW3f4eJAfJjMtrYey8N5u8btfmv/JH50hWl+Ys5Wz+PSTOdZZfzXxBzxlz" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator</h1>
+        <div class="notif-sukses" id="notif" style="display:none;">Perhitungan berhasil!</div>
+
+        <div class="form-group">
+            <input type="number" id="angka1" placeholder="Masukkan Angka 1">
+            <input type="number" id="angka2" placeholder="Masukkan Angka 2">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" onclick="calculate('+')">+</button>
+                <button type="button" class="btn btn-primary" onclick="calculate('-')">−</button>
+                <button type="button" class="btn btn-primary" onclick="calculate('*')">×</button>
+                <button type="button" class="btn btn-primary" onclick="calculate('/')">÷</button>
+                <button type="button" class="btn btn-primary" onclick="calculate('%')">%</button>
+            </div>
+            <button type="button" name="reset" onclick="reset()">CE</button>
+        </div>
+
+        <div id="result" class="result"></div>
+        <div id="error" class="error" style="display:none;"></div>
+
+        <div id="history" class="history" style="display:none;">
+            <h3>Riwayat Perhitungan</h3>
+            <ul id="historyList"></ul>
+            <button type="button" class="btn-clear-history" onclick="clearHistory()">Hapus Riwayat</button>
+        </div>
+    </div>
+
+    <script src="kalkulator.js"></script>
+</body>
+</html>
+
+
