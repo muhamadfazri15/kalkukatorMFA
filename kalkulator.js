@@ -38,7 +38,7 @@ function calculate(operator) {
                 showError(`${angka1}% dari 0 adalah 0`);
                 return;
             }
-            result = (angka1 / angka2) * 100;
+            result = (angka1 / 100) * angka2;
             break;
         default:
             showError('Operasi tidak valid.');
