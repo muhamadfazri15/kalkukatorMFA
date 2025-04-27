@@ -48,7 +48,7 @@ function calculate(operator) {
         case '/':
         case '%':
             if (angka1 === null || angka2 === null) {
-                showError('Kedua angka harus diisi!');
+                showError('Masukkan Angka Terlebih Dahulu!');
                 return;
             }
             if (operator === '+') result1 = angka1 + angka2;
