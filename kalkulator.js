@@ -6,6 +6,21 @@ const historySection = document.getElementById('history');
 const hasilElem = document.getElementById('result');
 const errorElem = document.getElementById('error');
 
+function limitInputLength(inputElement) {
+    inputElement.addEventListener('input', function () {
+        let value = inputElement.value;
+
+        const regex = /^(\d{1,20}(\.\d{0,20})?)?$/;
+
+        if (!regex.test(value)) {
+            inputElement.value = value.slice(0, value.length - 1);
+        }
+    });
+}
+
+limitInputLength(document.getElementById('angka1'));
+limitInputLength(document.getElementById('angka2'));
+
 function calculate(operator) {
     const angka1Value = document.getElementById('angka1').value;
     const angka2Value = document.getElementById('angka2').value;
@@ -188,10 +203,5 @@ angkaInputs.forEach(input => {
         errorElem.style.display = 'none';
         notifSukses.style.display = 'none';
         hasilElem.style.display = 'none';
-
-        if (isNaN(input.value)) {
-            showError('Input harus berupa angka!');
-            input.value = '';
-        }
     });
 });
