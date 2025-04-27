@@ -44,11 +44,14 @@ function calculate(operator) {
                     showError('Tidak bisa membagi dengan nol.');
                     return;
                 }
-                result1 = (angka1 / angka2).toFixed(9);
+                result1 = angka1 / angka2;
+            } else if (operator === '%') {
+                result1 = (angka1 / 100) * angka2;
             }
-            else if (operator === '%') result1 = (angka1 / 100) * angka2;
+            result1 = formatResult(result1);
             displayResult = `${result1}`;
             break;
+
         case 'sqrt':
             if (!angka1 && !angka2) {
                 showError('Minimal satu angka harus diisi untuk operasi akar!');
@@ -58,37 +61,41 @@ function calculate(operator) {
                 showError('Tidak bisa menghitung akar dari bilangan negatif.');
                 return;
             }
-            result1 = angka1 !== null ? Math.sqrt(angka1).toFixed(9) : '-';
-            result2 = angka2 !== null ? Math.sqrt(angka2).toFixed(9) : '-';
+            result1 = angka1 !== null ? formatResult(Math.sqrt(angka1)) : '-';
+            result2 = angka2 !== null ? formatResult(Math.sqrt(angka2)) : '-';
             displayResult = `√${angka1 ?? ''}=${result1} | √${angka2 ?? ''}=${result2}`;
             break;
+
         case 'sin':
             if (!angka1 && !angka2) {
                 showError('Minimal satu angka harus diisi untuk operasi sin!');
                 return;
             }
-            result1 = angka1 !== null ? Math.sin(toRadians(angka1)).toFixed(9) : '-';
-            result2 = angka2 !== null ? Math.sin(toRadians(angka2)).toFixed(9) : '-';
+            result1 = angka1 !== null ? formatResult(Math.sin(toRadians(angka1))) : '-';
+            result2 = angka2 !== null ? formatResult(Math.sin(toRadians(angka2))) : '-';
             displayResult = `sin(${angka1 ?? ''})=${result1} | sin(${angka2 ?? ''})=${result2}`;
             break;
+
         case 'cos':
             if (!angka1 && !angka2) {
                 showError('Minimal satu angka harus diisi untuk operasi cos!');
                 return;
             }
-            result1 = angka1 !== null ? Math.cos(toRadians(angka1)).toFixed(9) : '-';
-            result2 = angka2 !== null ? Math.cos(toRadians(angka2)).toFixed(9) : '-';
+            result1 = angka1 !== null ? formatResult(Math.cos(toRadians(angka1))) : '-';
+            result2 = angka2 !== null ? formatResult(Math.cos(toRadians(angka2))) : '-';
             displayResult = `cos(${angka1 ?? ''})=${result1} | cos(${angka2 ?? ''})=${result2}`;
             break;
+
         case 'tan':
             if (!angka1 && !angka2) {
                 showError('Minimal satu angka harus diisi untuk operasi tan!');
                 return;
             }
-            result1 = angka1 !== null ? Math.tan(toRadians(angka1)).toFixed(9) : '-';
-            result2 = angka2 !== null ? Math.tan(toRadians(angka2)).toFixed(9) : '-';
+            result1 = angka1 !== null ? formatResult(Math.tan(toRadians(angka1))) : '-';
+            result2 = angka2 !== null ? formatResult(Math.tan(toRadians(angka2))) : '-';
             displayResult = `tan(${angka1 ?? ''})=${result1} | tan(${angka2 ?? ''})=${result2}`;
             break;
+
         default:
             showError('Operasi tidak valid.');
             return;
@@ -96,6 +103,10 @@ function calculate(operator) {
 
     showResult(displayResult);
     TampilkanHistory(angka1, angka2, operator, displayResult);
+}
+
+function formatResult(value) {
+    return Number.isInteger(value) ? value.toString() : value.toFixed(9);
 }
 
 function toRadians(degrees) {
@@ -177,5 +188,10 @@ angkaInputs.forEach(input => {
         errorElem.style.display = 'none';
         notifSukses.style.display = 'none';
         hasilElem.style.display = 'none';
+
+        if (isNaN(input.value)) {
+            showError('Input harus berupa angka!');
+            input.value = '';
+        }
     });
 });
