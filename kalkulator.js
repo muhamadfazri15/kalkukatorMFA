@@ -58,8 +58,8 @@ function calculate(operator) {
                 showError('Tidak bisa menghitung akar dari bilangan negatif.');
                 return;
             }
-            result1 = angka1 !== null ? Math.sqrt(angka1) : '-';
-            result2 = angka2 !== null ? Math.sqrt(angka2) : '-';
+            result1 = angka1 !== null ? Math.sqrt(angka1)toFixed(8) : '-';
+            result2 = angka2 !== null ? Math.sqrt(angka2)toFixed(8) : '-';
             displayResult = `√${angka1 ?? ''}=${result1} | √${angka2 ?? ''}=${result2}`;
             break;
         case 'sin':
@@ -67,8 +67,8 @@ function calculate(operator) {
                 showError('Minimal satu angka harus diisi untuk operasi sin!');
                 return;
             }
-            result1 = angka1 !== null ? Math.sin(toRadians(angka1)).toFixed(3) : '-';
-            result2 = angka2 !== null ? Math.sin(toRadians(angka2)).toFixed(3) : '-';
+            result1 = angka1 !== null ? Math.sin(toRadians(angka1)).toFixed(9) : '-';
+            result2 = angka2 !== null ? Math.sin(toRadians(angka2)).toFixed(9) : '-';
             displayResult = `sin(${angka1 ?? ''})=${result1} | sin(${angka2 ?? ''})=${result2}`;
             break;
         case 'cos':
@@ -76,8 +76,8 @@ function calculate(operator) {
                 showError('Minimal satu angka harus diisi untuk operasi cos!');
                 return;
             }
-            result1 = angka1 !== null ? Math.cos(toRadians(angka1)).toFixed(3) : '-';
-            result2 = angka2 !== null ? Math.cos(toRadians(angka2)).toFixed(3) : '-';
+            result1 = angka1 !== null ? Math.cos(toRadians(angka1)).toFixed(9) : '-';
+            result2 = angka2 !== null ? Math.cos(toRadians(angka2)).toFixed(9) : '-';
             displayResult = `cos(${angka1 ?? ''})=${result1} | cos(${angka2 ?? ''})=${result2}`;
             break;
         case 'tan':
@@ -85,8 +85,8 @@ function calculate(operator) {
                 showError('Minimal satu angka harus diisi untuk operasi tan!');
                 return;
             }
-            result1 = angka1 !== null ? Math.tan(toRadians(angka1)).toFixed(3) : '-';
-            result2 = angka2 !== null ? Math.tan(toRadians(angka2)).toFixed(3) : '-';
+            result1 = angka1 !== null ? Math.tan(toRadians(angka1)).toFixed(9) : '-';
+            result2 = angka2 !== null ? Math.tan(toRadians(angka2)).toFixed(9) : '-';
             displayResult = `tan(${angka1 ?? ''})=${result1} | tan(${angka2 ?? ''})=${result2}`;
             break;
         default:
