@@ -11,6 +11,7 @@ function limitInputLength(inputElement) {
         let value = inputElement.value;
 
         const regex = /^(-?\d{0,20}(\.\d{0,20})?)?$/;
+        
 
         if (!regex.test(value)) {
             inputElement.value = value.slice(0, value.length - 1);
@@ -67,53 +68,100 @@ function calculate(operator) {
             displayResult = `${result1}`;
             break;
 
-  case 'sqrt':
-    if (!angka1 && !angka2) {
-        showError('Minimal satu angka harus diisi untuk operasi akar!');
-        return;
-    }
-    if ((angka1 !== null && angka1 < 0) || (angka2 !== null && angka2 < 0)) {
-        showError('Tidak bisa menghitung akar dari bilangan negatif.');
-        return;
-    }
-    result1 = angka1 !== null ? Math.sqrt(angka1) : null;
-    result2 = angka2 !== null ? Math.sqrt(angka2) : null;
-    let sumSqrt = (result1 ?? 0) + (result2 ?? 0);
-    displayResult = `√${angka1 ?? ''}=${formatResult(result1)} | √${angka2 ?? ''}=${formatResult(result2)} | Total=${formatResult(sumSqrt)}`;
-    break;
+            case 'sqrt':
+            if (angka1 === null && angka2 === null) {
+                showError('Minimal satu angka harus diisi untuk operasi akar!');
+                return;
+            }
+            if ((angka1 !== null && angka1 < 0) || (angka2 !== null && angka2 < 0)) {
+                showError('Tidak bisa menghitung akar dari bilangan negatif.');
+                return;
+            }
 
-case 'sin':
-    if (!angka1 && !angka2) {
-        showError('Minimal satu angka harus diisi untuk operasi sin!');
-        return;
-    }
-    result1 = angka1 !== null ? Math.sin(toRadians(angka1)) : null;
-    result2 = angka2 !== null ? Math.sin(toRadians(angka2)) : null;
-    let sumSin = (result1 ?? 0) + (result2 ?? 0);
-    displayResult = `sin(${angka1 ?? ''})=${formatResult(result1)} | sin(${angka2 ?? ''})=${formatResult(result2)} | Total=${formatResult(sumSin)}`;
-    break;
+            result1 = angka1 !== null ? Math.sqrt(angka1) : null;
+            result2 = angka2 !== null ? Math.sqrt(angka2) : null;
 
-case 'cos':
-    if (!angka1 && !angka2) {
-        showError('Minimal satu angka harus diisi untuk operasi cos!');
-        return;
-    }
-    result1 = angka1 !== null ? Math.cos(toRadians(angka1)) : null;
-    result2 = angka2 !== null ? Math.cos(toRadians(angka2)) : null;
-    let sumCos = (result1 ?? 0) + (result2 ?? 0);
-    displayResult = `cos(${angka1 ?? ''})=${formatResult(result1)} | cos(${angka2 ?? ''})=${formatResult(result2)} | Total=${formatResult(sumCos)}`;
-    break;
+            let sumSqrt = 0;
+            if (result1 !== null) sumSqrt += result1;
+            if (result2 !== null) sumSqrt += result2;
 
-case 'tan':
-    if (!angka1 && !angka2) {
-        showError('Minimal satu angka harus diisi untuk operasi tan!');
-        return;
-    }
-    result1 = angka1 !== null ? Math.tan(toRadians(angka1)) : null;
-    result2 = angka2 !== null ? Math.tan(toRadians(angka2)) : null;
-    let sumTan = (result1 ?? 0) + (result2 ?? 0);
-    displayResult = `tan(${angka1 ?? ''})=${formatResult(result1)} | tan(${angka2 ?? ''})=${formatResult(result2)} | Total=${formatResult(sumTan)}`;
-    break;
+            let kuadratSum = sumSqrt * sumSqrt; // hasil jumlah akar dikuadratkan
+
+            displayResult = '';
+            if (result1 !== null) {
+                displayResult += `√${angka1}=${formatResult(result1)} `;
+            }
+            if (result2 !== null) {
+                displayResult += `+ √${angka2}=${formatResult(result2)} `;
+            }
+            displayResult += `| Total=${formatResult(sumSqrt)}=√${formatResult(kuadratSum)}`;
+            break;
+
+        case 'sin':
+            if (angka1 === null && angka2 === null) {
+                showError('Minimal satu angka harus diisi untuk operasi sin!');
+                return;
+            }
+            result1 = angka1 !== null ? Math.sin(toRadians(angka1)) : null;
+            result2 = angka2 !== null ? Math.sin(toRadians(angka2)) : null;
+
+            let sumSin = 0;
+            if (result1 !== null) sumSin += result1;
+            if (result2 !== null) sumSin += result2;
+
+            displayResult = '';
+            if (result1 !== null) {
+                displayResult += `sin(${angka1})=${formatResult(result1)} `;
+            }
+            if (result2 !== null) {
+                displayResult += `+ sin(${angka2})=${formatResult(result2)} `;
+            }
+            displayResult += `| Total=${formatResult(sumSin)}`;
+            break;
+
+        case 'cos':
+            if (angka1 === null && angka2 === null) {
+                showError('Minimal satu angka harus diisi untuk operasi cos!');
+                return;
+            }
+            result1 = angka1 !== null ? Math.cos(toRadians(angka1)) : null;
+            result2 = angka2 !== null ? Math.cos(toRadians(angka2)) : null;
+
+            let sumCos = 0;
+            if (result1 !== null) sumCos += result1;
+            if (result2 !== null) sumCos += result2;
+
+            displayResult = '';
+            if (result1 !== null) {
+                displayResult += `cos(${angka1})=${formatResult(result1)} `;
+            }
+            if (result2 !== null) {
+                displayResult += `+ cos(${angka2})=${formatResult(result2)} `;
+            }
+            displayResult += `| Total=${formatResult(sumCos)}`;
+            break;
+
+        case 'tan':
+            if (angka1 === null && angka2 === null) {
+                showError('Minimal satu angka harus diisi untuk operasi tan!');
+                return;
+            }
+            result1 = angka1 !== null ? Math.tan(toRadians(angka1)) : null;
+            result2 = angka2 !== null ? Math.tan(toRadians(angka2)) : null;
+
+            let sumTan = 0;
+            if (result1 !== null) sumTan += result1;
+            if (result2 !== null) sumTan += result2;
+
+            displayResult = '';
+            if (result1 !== null) {
+                displayResult += `tan(${angka1})=${formatResult(result1)} `;
+            }
+            if (result2 !== null) {
+                displayResult += `+ tan(${angka2})=${formatResult(result2)} `;
+            }
+            displayResult += `| Total=${formatResult(sumTan)}`;
+            break;
 
         default:
             showError('Operasi tidak valid.');
