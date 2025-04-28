@@ -10,7 +10,7 @@ function limitInputLength(inputElement) {
     inputElement.addEventListener('input', function () {
         let value = inputElement.value;
 
-        const regex = /^(\d{1,20}(\.\d{0,20})?)?$/;
+        const regex = /^(-?\d{0,20}(\.\d{0,20})?)?$/;
 
         if (!regex.test(value)) {
             inputElement.value = value.slice(0, value.length - 1);
