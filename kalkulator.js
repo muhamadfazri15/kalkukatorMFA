@@ -173,8 +173,12 @@ function calculate(operator) {
 }
 
 function formatResult(value) {
-    return Number.isInteger(value) ? value.toString() : value.toFixed(9);
+    if (Number.isInteger(value)) {
+        return value.toString();
+    }
+    return parseFloat(value.toFixed(9)).toString();
 }
+
 
 function toRadians(degrees) {
     return degrees * (Math.PI / 180);
@@ -248,6 +252,27 @@ function clearHistory() {
     history = [];
     historyList.innerHTML = '';
     historySection.style.display = 'none';
+}
+
+function downloadHistory() {
+    if (history.length === 0) {
+        alert('Tidak ada riwayat untuk diunduh.');
+        return;
+    }
+
+    const now = new Date();
+    const tanggal = now.toLocaleDateString('id-ID');
+    const waktu = now.toLocaleTimeString('id-ID');
+
+    let content = `Riwayat Perhitungan - ${tanggal} ${waktu}\n`;
+    content += "=========================================\n";
+    content += history.slice().reverse().join('\n');
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'riwayat.txt';
+    link.click();
 }
 
 angkaInputs.forEach(input => {
